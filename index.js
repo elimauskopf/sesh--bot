@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const { prefix } = require('./config.json');
 const { timeParser } = require('./time');
+const moment = require('moment');
 
 client.once('ready', () => {
 	console.log('Ready!');
@@ -49,6 +50,9 @@ client.on('message', message => {
 		message.mentions.users.forEach(user => {
 			usersToMention.push(`<@${user.id}>`);
 		});
+
+		console.log('TIME DIFF: ', timeDiff);
+		console.log('DATE now ', moment().format('LT'));
 
 		// If more than 15 minutes away set another reminder
 		if (timeDiff >= 900000) {
